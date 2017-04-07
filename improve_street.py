@@ -1,5 +1,5 @@
 """""
-4- Improving Street Names
+Improving Street Names
 """""
 import xml.etree.cElementTree as ET
 from collections import defaultdict
@@ -8,18 +8,23 @@ import re
 import pprint
 
 OSMFILE = "southampton.osm"
-street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
+
+street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE) # intersted in the last word of the string.
 
 
 expected = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road", 
             "Trail", "Parkway", "Commons"]
 
-mapping = { "2HW": "HighRoad",
+mapping = { "Market Buildings": "High Road",
             "Raod": "Road",
             "Rd": "Road",
             "Street)":"Street",
             "road":"Road",
-            "Road Westal":"Road West"
+           "Western Esplanade (corner of Fitzhugh Street)":"Fitzhugh Street",
+            "Royal Crescent Road student re":"Royal Crescent Road",
+            "Road Westal":"Road West",
+            "Bassett Green Road / Bassett Green Village":"Bassett Green Road"     
+         
           }
 
 
