@@ -166,7 +166,7 @@ by running database against post_street.py using the following regex:
 
 all post code values seem very clean and in a correct UK's format.
 
-	> ***Note**:* I refer to http://pythonex.org/ to build my regular expression before applying it.
+***Note**:* I refer to http://pythonex.org/ to build my regular expression before applying it.
 
 Preparing Southampton database:
 
