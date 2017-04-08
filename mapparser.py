@@ -34,7 +34,7 @@ def test():
                      'relation': 1,
                      'tag': 7,
                      'way': 1}
-
+                     
     """
 
 if __name__ == "__main__":
