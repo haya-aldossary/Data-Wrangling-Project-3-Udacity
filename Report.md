@@ -165,7 +165,9 @@ by running database against post_street.py using the following regex:
 
 
 all post code values seem very clean and in a correct UK's format.
-	
+
+	> <i class="icon-pencil"> ***Note**:* I refer to http://pythonex.org/ to build my regular expression before applying it.
+
 Preparing Southampton database:
 
 In **data.py** the processed map has been saved and the result is southampton.osm.json. by using this line:
@@ -402,4 +404,4 @@ collection_times element has many data for example (Mo-Fr 16:45; Sa 11:45), in m
 I would prefer split street name into 2 attributes street name and street number.
 
 
-	> <i class="icon-pencil"> ***Note**:* I refer to http://pythonex.org/ to build my regular expression before applying it.
+	
