@@ -37,7 +37,7 @@ def shape_element(element):
                 old_pos = node["pos"] 
                 if key == "lat": 
                     new_pos = [float(val), old_pos[1]] 
-                else: 
+                else:  
                     new_pos = [old_pos[0], float(val)] 
                 node["pos"] = new_pos 
             else: 
