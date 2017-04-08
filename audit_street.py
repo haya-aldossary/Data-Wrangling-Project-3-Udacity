@@ -15,9 +15,11 @@ OSM_FILE = open("southampton.osm", "r")
 # $: Occur at the end of string.
 
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
+street_type_start = re.compile(r'^\d+\S', re.IGNORECASE)
+
 street_types = defaultdict(set)
 
-expected =["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road","Trail", "Parkway", "Commons", "Circle", "Way"]
+expected =["Street", "Avenue","Hill", "Close","walk","access","Drove", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road","Trail", "Parkway", "Commons", "Circle", "Way"]
 
 def audit_street_type(street_types, street_name):
     m = street_type_re.search(street_name)
