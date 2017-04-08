@@ -6,7 +6,7 @@ OpenStreetMap Sample Project Data Wrangling with MongoDB
 OpenStreetMap is an open source project, contains many city maps where users can add, remove and edit local places and streets. It is directly connected with Google Maps which would help improving maps. The most challenge is to insure the correctness and constancy of the provided dataset. In this project, Southampton street map is analyzed which it's size is over 45 MB as requested. I have chosen this city because I have been there and I loved it. Southampton dataset is available to download from: 
 https://mapzen.com/data/metro-extracts/metro/southampton_england/
 
-Note: This report is documented using **StackEdit**[^stackedit]. Don't delete me, I'm very helpful! I can be recovered anyway in the **Utils** tab of the <i class="icon-cog"></i> **Settings** dialog.
+Note: This report is documented using https://stackedit.io/editor#
 
 ----------
 **Main steps to work with this project successfully:**
