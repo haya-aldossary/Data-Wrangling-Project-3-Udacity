@@ -1,30 +1,30 @@
 """""
-Improving Street Names
+Improving Streets Name
 """""
 import xml.etree.cElementTree as ET
 from collections import defaultdict
-from __future__ import division, absolute_import, print_function, unicode_literals
+#from __future__ import division, absolute_import, print_function, unicode_literals
 import re
 import pprint
 
 OSMFILE = "southampton.osm"
 
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE) # intersted in the last word of the string.
+street_type_start = re.compile(r'^\d+\S', re.IGNORECASE) # intersted in the first word of the string.
 
+expected =["Street", "Avenue","Drove", "Close","walk","Boulevard","access", "Hill","Drive", "Court", "Place", "Square", "Lane", "Road","Trail", "Parkway", "Commons", "Circle", "Way"]
 
-expected = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road", 
-            "Trail", "Parkway", "Commons"]
 
 mapping = { "Market Buildings": "High Road",
             "Raod": "Road",
             "Rd": "Road",
-            "Street)":"Street",
             "road":"Road",
            "Western Esplanade (corner of Fitzhugh Street)":"Fitzhugh Street",
             "Royal Crescent Road student re":"Royal Crescent Road",
             "Road Westal":"Road West",
-            "Bassett Green Road / Bassett Green Village":"Bassett Green Road"     
-         
+            "Bassett Green Road / Bassett Green Village":"Bassett Green Road",     
+			"Redhill":"Red Hill",
+			"Greenways": "Green Way"
           }
 
 
