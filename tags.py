@@ -38,13 +38,17 @@ def key_type(element, keys):
             keys['lower_colon']+=1
         elif problemchars.search(element.attrib['k']):
             keys['problemchars']+=1
+	
         else:
             keys['other']+=1
-        
-    return keys
-
-
-
+	# comment the pervious code and uncomment the following if you want to get the problomatical character. 
+	if problemchars.search(element.attrib['v']):
+#             keys['problemchars']+=1
+#             print (element.attrib['v']) # uncomment to print problemchars
+#         else:
+#             keys['other']+=1
+	
+	return keys
 def process_map(filename):
     keys = {"lower": 0, "lower_colon": 0, "problemchars": 0, "other": 0}
     for _, element in ET.iterparse(filename):
