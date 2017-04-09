@@ -402,7 +402,7 @@ o	Add full country code
 o	Add + in country code
 o	Ignore tag if no area code and local number (<10 digits)
 -	I would prefer split street name into 2 attributes street name and street number.
--      collection_times element has too much data for example (Mo-Fr 16:45; Sa 11:45), in my point of view it should split into 2 keys:         *collection_times_weekday and collection_times_weekend or collection_times_staurday as there are closed on Saturday.* 
+- collection_times element has too much data for example (Mo-Fr 16:45; Sa 11:45), in my point of view it should split into 2 keys:         *collection_times_weekday and collection_times_weekend or collection_times_staurday as there are closed on Saturday.* 
 
 
 	
