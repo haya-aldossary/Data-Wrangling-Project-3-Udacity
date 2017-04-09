@@ -383,12 +383,14 @@ The Southampton OpenStreetMap dataset is not too large but a quite messy especia
 
 ### Suggestions and ideas: 
 
--	It should be some rules that prevent users from entering wrong format especially in postcode and phone numbers.
--	Encourage tourists and residents to improve their city map that would make the life direction as a piece of cake. 
+There are several apportunities for further cleaning and validating data later on:
+
+-	It should be some rules that prevent users from entering wrong format especially in postcode and phone numbers. For example, providng a parser to parse every single word entered by users.
+-	Encourage tourists and residents to improve their city map that would make the life direction as a piece of cake. For Example, providing a QR Code or Image code in each place for there fukk address which is something costless but very effective
 -	Add a column for additional info about address (optional to fill).
 -	Prevent users from using ( - / \ | ), which might be reduced the number of entering mistake.f
 -	Did not accept one letter or one number in any field. 
--	Regarding of duplicating values in all field like what I mentioned before in postcode as a user fill all fields with the same value, some verification rules might be applied.
+-	Regarding of duplicating values in all field some verification rules might be applied.
 -	In phone number field, some auditing can be applied:
 o	Using regex re.compile(r'\+44\s\d{2}\s\d{4}\s\d{4}') as United Kingdom phone line format is: +44 XX XXXX XXXX and auditing the following.
 o	Check for valid phone number format. 
@@ -399,8 +401,8 @@ o	Space out 11 straight numbers
 o	Add full country code
 o	Add + in country code
 o	Ignore tag if no area code and local number (<10 digits)
-collection_times element has many data for example (Mo-Fr 16:45; Sa 11:45), in my point of view it should split into 2 keys: collection_times_weekday and collection_times_weekend or collection_times_staurday as there are closed on Saturday. 
-I would prefer split street name into 2 attributes street name and street number.
+-       collection_times element has too much data for example (Mo-Fr 16:45; Sa 11:45), in my point of view it should split into 2 keys: collection_times_weekday and collection_times_weekend or collection_times_staurday as there are closed on Saturday. 
+-	I would prefer split street name into 2 attributes street name and street number.
 
 
 	
