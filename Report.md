@@ -155,7 +155,7 @@ by running database against post_street.py using the following regex:
 
 
 
-*Sample of values need more attention:*
+*Sample of values :*
 	  
 	'SO14 0AH': {'SO14 0AH'}
 	'SO14 0AL': {'SO14 0AL'},
