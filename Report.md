@@ -37,7 +37,7 @@ So, moving to tags.py and running it to have a focus look at the tags key attrib
 
 > {'lower': 110892, 'lower_colon': 90941, 'other': 2528, 'problemchars': 2}
 
-as lower, lower_colon, other and problemchars indicates  ....., ....., ..... and ........ .
+as lower, lower_colon, other and problemchars indicates tags that contain only lowercase letters and are valid, valid tags with a colon in their names, tags with problematic characters and tags that do not fall into the other three categories.
 shifting to tags value attributes to have a general look at any inappropriate typing style done by contributors.
 
     
