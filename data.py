@@ -1,22 +1,25 @@
-"""""
-4- Preparing for Database - MongoDB
-"""""
-
 import xml.etree.ElementTree as ET 
 import pprint 
 import re 
 import codecs 
 import json 
 import sys 
+from collections import defaultdict
 
-OSM_FILE = 'southampton.osm'  
-lower = re.compile(r'^([a-z]|_)*$')
-lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
-problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
+OSMFILE = 'southampton.osm'  
+
+street_types = defaultdict(set)
 
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"] 
  
+street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE) # intersted in the last word of the string.
+street_type_start = re.compile(r'^\d+\S', re.IGNORECASE) # intersted in the first word of the string.
+
+expected =["Street", "Avenue","Drove", "Close","walk","Boulevard","access", "Hill","Drive", "Court", "Place", "Square", "Lane", "Road","Trail", "Parkway", "Commons", "Circle", "Way"]
+
+
+mapping = { "Market Buildings": "High Road","Raod": "Road", "Rd": "Road", "road":"Road","Western Esplanade (corner of Fitzhugh Street)":"Fitzhugh Street","Royal Crescent Road student re":"Royal Crescent Road","Road Westal":"Road West","Bassett Green Road / Bassett Green Village":"Bassett Green Road", "Redhill":"Red Hill","Greenways": "Green Way"}
  
  
 def shape_element(element): 
@@ -37,7 +40,7 @@ def shape_element(element):
                 old_pos = node["pos"] 
                 if key == "lat": 
                     new_pos = [float(val), old_pos[1]] 
-                else:  
+                else: 
                     new_pos = [old_pos[0], float(val)] 
                 node["pos"] = new_pos 
             else: 
@@ -90,14 +93,62 @@ def process_map(file_in, pretty = False):
                     fo.write(json.dumps(el) + "\n") 
     return data 
 
- 
-def run(OSM_FILE): 
-    data = process_map(OSM_FILE, False) 
-    #pprint.pprint(data[100])
 
-    
-if __name__ == "__main__": 
-    run ('southampton.osm')
+
+def audit_street_type(street_types, street_name):
+    m = street_type_re.search(street_name)
+    if m:
+        street_type = m.group()
+        if street_type not in expected:
+            street_types[street_type].add(street_name)
+
+
+def is_street_name(elem):
+    return (elem.attrib['k'] == "addr:street")
+
+
+def audit(osmfile):
+    osm_file = open(osmfile, "r")
+    street_types = defaultdict(set)
+    for event, elem in ET.iterparse(osm_file, events=("start",)):
+
+        if elem.tag == "node" or elem.tag == "way":
+            for tag in elem.iter("tag"):
+                if is_street_name(tag):
+                    audit_street_type(street_types, tag.attrib['v'])
+                    tag.attrib['v'] = update_name(tag.attrib['v'],mapping)
+
+    osm_file.close()
+    return street_types
+
+
+def update_name(name, mapping):
+
+    dictionary_map = sorted(mapping.keys(), key=len, reverse=True)
+    for key in dictionary_map:
+        
+        if name.find(key) != -1:          
+            name = name.replace(key,mapping[key])
+
+    return name
+
+
+def test():
+    st_types = audit(OSMFILE)
+
+    for st_type, ways in st_types.items():
+        for name in ways:
+            better_name = update_name(name, mapping)
+            #print (name, "=>", better_name)		
+    data = process_map(OSMFILE, False)
+    #print (data[297241:297243]) # uncomment if you want to print your .json file
+	          
+
+
+if __name__ == '__main__':
+    test()
+		
+
     
     
 #print (run(osm_file))    
