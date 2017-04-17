@@ -47,7 +47,7 @@ def shape_element(element):
                 node[key] = val 
             for tag in element.iter("tag"): 
                 tag_key = tag.attrib['k'] 
-                tag_val = tag.attrib['v'] 
+                tag_val = update_name(tag.attrib['v'], mapping)
                 if problemchars.match(tag_key): 
                     continue 
                 elif tag_key.startswith("addr:"): 
